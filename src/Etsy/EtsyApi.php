@@ -108,20 +108,35 @@ class EtsyApi
 		return $result;
 	}
 
-	private function prepareParameters($params) {
-		$query_pairs = array();
-		$allowed = array("limit", "offset", "page", "sort_on", "sort_order", "include_private", "language");
+    private function prepareParameters($params)
+    {
+        $query_pairs = [];
+        $allowed = [
+            'limit',
+            'offset',
+            'page',
+            'sort_on',
+            'sort_order',
+            'include_private',
+            'language',
+            'min_created',
+            'max_created',
+            'max_last_modified',
+            'min_last_modified',
+            'was_paid',
+            'was_shipped',
+        ];
 
-		if ($params) {
-			foreach($params as $key=>$value) {
-				if (in_array($key, $allowed)) {
-					$query_pairs[$key] = $value;
-				}
-			}
-		}
+        if ($params) {
+            foreach ($params as $key => $value) {
+                if (in_array($key, $allowed)) {
+                    $query_pairs[$key] = $value;
+                }
+            }
+        }
 
-		return $query_pairs;
-	}
+        return $query_pairs;
+    }
 
 	private function prepareAssociations($associations)
 	{
